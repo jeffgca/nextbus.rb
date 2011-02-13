@@ -1,8 +1,7 @@
 load 'translink.rb'
 require 'pp'
 
-# todo write proper tests
+p = TranslinkCachingProxy.new('./foo_2.sqlite3')
 
-pp Translink.get_stop('51217')
+pp p.get_stop_cache('51217')
 
-pp Translink.get_stop_info('51217')
