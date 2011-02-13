@@ -1,11 +1,13 @@
 require 'sinatra'
-require 'haml'
+require 'json'
 
 get '/' do
-  "No parameters specified?"
+  content_type :json
+  { :msg => 'No parameters specified' }.to_json
 end
 
-get '/stop' do
-  
+get '/stop/:number' do
+  content_type :json
+  { :stop_number => params[:number] }.to_json
 end
 
