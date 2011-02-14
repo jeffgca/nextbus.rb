@@ -1,0 +1,5 @@
+*.db
+*.sqlite*
+*.komodoproject
+.DS_*
+*sencha-touch*
