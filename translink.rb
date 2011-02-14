@@ -13,6 +13,12 @@ class Translink
   def self.get_stop_info(stop)
     get(Translink::url('q', stop))
   end
+  
+  # http://m.translink.ca/api/stops/?f=json&lng=-123.16789&lat=49.25344
+  def self.get_stops_from_location(lng, lat)
+    url = "#{base}?f=json&lng=#{ng}&lat=#{lat}"
+    get(url)
+  end
 
   def self.url(param, value)
     base = "http://m.translink.ca/api/stops/"
@@ -27,7 +33,6 @@ class TranslinkCachingProxy
   end
 
   def get_stop_cache(number)
-    
     stop_times = Translink::get_stop(number)
     if @cache.stop_is_cached(number)
       stop = @cache.get_stop(number)
@@ -41,4 +46,9 @@ class TranslinkCachingProxy
     end
     return {:stop_info => stop, :data => stop_times}
   end
+  
+  def get_local_stops(lng, lat)
+    return Translink.get_stops_from_location(lng, lat)
+  end
+  
 end
