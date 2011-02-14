@@ -6,7 +6,7 @@ Ext.setup({
     glossOnIcon: false,
     onReady: function() {
         Ext.Ajax.request({
-            url: 'http://absolom.local:4567/stop/51217',
+            url: 'http://absolom.local/stop/51217',
             method: 'GET',
             success: function(result, request) {
                 console.log([result, requst])
@@ -14,6 +14,43 @@ Ext.setup({
         });
     }
 });
+
+// geolocation
+function init_location() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+    
+        function(position) {
+    
+            // Did we get the position correctly?
+            // alert (position.coords.latitude);
+            // To see everything available in the position.coords array:
+            // for (key in position.coords) {alert(key)}
+            console.log([position.coords.latitude, position.coords.longitude]);
+            
+    
+        },
+        // next function is the error callback
+        function(error) {
+            switch (error.code) {
+            case error.TIMEOUT:
+                alert('Timeout');
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert('Position unavailable');
+                break;
+            case error.PERMISSION_DENIED:
+                alert('Permission denied');
+                break;
+            case error.UNKNOWN_ERROR:
+                alert('Unknown error');
+                break;
+            }
+        });
+    }    
+}
+
+
 
 //Ext.setup({
 //    icon: 'icon.png',
