@@ -2,7 +2,7 @@ require 'sinatra'
 require 'json'
 load 'translink.rb'
 
-translink = TranslinkCachingProxy.new('./translink.sqlite')
+translink = TranslinkCachingProxy.new('./db/translink.sqlite')
 
 get '/' do
   content_type :json
